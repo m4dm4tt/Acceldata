@@ -1,0 +1,39 @@
+Sub-query Parser Algorithm
+--------------------------
+
+1) A sub-query starts with a '(' and a 'SELECT' clause.
+2) Every '(' has a corresponding ')'.
+3) Functions & Expressions which are embedded within '(', ')' should be excluded.
+4) A sub-query can exist in -
+	a) SELECT clause.
+	b) IN or NOT IN clause.
+	c) EXISTS clause.
+	d) BETWEEN clause.
+	e) WITH clause.
+	f) FROM clause.
+5) Sub-query alias is always after a whitespace, after a '('.
+6) A sub-query need not have an alias like in an EXISTS clause.
+7) Table and table aliases are ',' separated after the FROM clause.
+8) A sub-query can also be present in the FROM clause, in which case, the alias of the sub-query has to be printed in place of the table name.
+9) A BETWEEN clause starts with the word BETWEEN and the word AND is a separator between expressions.
+10) ORDER BY clauses start with the word ORDER BY and have a comma separated list of columns or aliases.
+11) Analytical functions also could have ORDER BY which need to be eliminated from the output.
+12) LIMIT clause starts with the keyword LIMIT and has a numeric value immediately after it.
+13) JOIN clauses start with WHERE or AND.
+14) Following symbols are used to separate the left and right sides of a JOIN clause.
+	a) =
+	b) !=, <>
+	c) >, >=, <, <=
+	d) JOIN ... ON ...AND/WHERE
+	e) JOIN ... USING
+	f) CROSS JOIN
+15) There could be join types such as the following before the word JOIN -
+	a) INNER
+	b) LEFT
+	c) LEFT OUTER
+	d) RIGHT
+	e) RIGHT OUTER
+	f) FULL
+	g) FULL OUTER
+16) The USING clause in a join is a list of comma separated columns enclosed in brackets.
+71) CROSS JOIN does not have any ON condition.

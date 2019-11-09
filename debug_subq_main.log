@@ -1,0 +1,71 @@
+0:select
+1:nvl
+2:(
+3:a
+4:,
+5:b
+6:)
+7:from
+8:tab1
+9:t1
+10:where
+11:t1.id
+12:in
+13:(
+14:select
+15:t2.id
+16:from
+17:tab2
+18:t2
+19:where
+20:t2.id
+21:in
+22:(
+23:select
+24:t3.id
+25:from
+26:tab3
+27:t3
+28:where
+29:t3.id
+30:in
+31:(
+32:select
+33:t4.id
+34:from
+35:tab4
+36:t4
+37:where
+38:t4.name
+39:=
+40:'foo
+41:'
+42:and
+43:(
+44:1=1
+45:)
+46:)
+47:)
+48:)
+49:and
+50:exists
+51:(
+52:select
+53:'
+54:1
+55:'
+56:from
+57:tab5
+58:t5
+59:where
+60:t1.a
+61:=
+62:t5.b
+63:)
+64:;
+Open and close bracket pairs: 
+[[2, 6], [43, 45], [31, 46], [22, 47], [13, 48], [51, 63]]
+Subquery Open bracket positions: 
+[13, 22, 31, 51]
+Subquery start and end positions: 
+[[31, 46], [22, 47], [13, 48], [51, 63]]

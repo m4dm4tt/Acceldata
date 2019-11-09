@@ -1,0 +1,26 @@
+Requirement
+-----------
+Given a SQL Query,
+
+1) Count number of sub-queries.
+2) List of sub-queries with their aliases.
+3) List of tables used in each sub-query along with table aliases.
+4) List of BETWEEN, ORDER BY and LIMIT clauses.
+5) List of joins per sub-query along with join type.
+
+
+Language of choice
+------------------
+
+Bash is out since this project involves much more than simple text search. There is need for tokenization. Python has a good language parser module(NLTK).
+We also need positional traversal of queuing/stack to arrive at index positions, which bash cannot handle but Python deque can.
+
+
+
+Setup
+-----
+
+1) Install python 3.8 for windows and ensure its added to the PATH
+2) Install nltk: type: pip install nltk
+3) In python shell, type: import nltk
+4) In python shell, type: nltk.download('all')
