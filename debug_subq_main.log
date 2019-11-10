@@ -1,71 +1,129 @@
-0:select
-1:nvl
-2:(
-3:a
-4:,
-5:b
+0:SELECT
+1:job_id
+2:,
+3:AVG
+4:(
+5:salary
 6:)
-7:from
-8:tab1
-9:t1
-10:where
-11:t1.id
-12:in
-13:(
-14:select
-15:t2.id
-16:from
-17:tab2
-18:t2
-19:where
-20:t2.id
-21:in
-22:(
-23:select
-24:t3.id
-25:from
-26:tab3
-27:t3
-28:where
-29:t3.id
-30:in
-31:(
-32:select
-33:t4.id
-34:from
-35:tab4
-36:t4
-37:where
-38:t4.name
-39:=
-40:'foo
-41:'
-42:and
-43:(
-44:1=1
-45:)
-46:)
-47:)
-48:)
-49:and
-50:exists
-51:(
-52:select
-53:'
-54:1
-55:'
-56:from
-57:tab5
-58:t5
-59:where
-60:t1.a
-61:=
-62:t5.b
-63:)
-64:;
+7:FROM
+8:employees
+9:e
+10:FULL OUTER JOIN
+11:dept
+12:d
+13:WHERE
+14:e.dept_id
+15:=
+16:d.dept_id
+17:AND
+18:1
+19:=
+20:1
+21:AND
+22:e.salary
+23:BETWEEN
+24:(
+25:10000
+26:+
+27:1
+28:)
+29:AND
+30:100000
+31:*
+32:10
+33:AND
+34:e.bonus
+35:BETWEEN
+36:100
+37:+
+38:2
+39:AND
+40:(
+41:1000
+42:*
+43:15
+44:)
+45:GROUP BY
+46:job_id
+47:HAVING
+48:AVG
+49:(
+50:salary
+51:)
+52:<
+53:(
+54:SELECT
+55:MAX
+56:(
+57:AVG
+58:(
+59:j.min_salary
+60:)
+61:)
+62:FROM
+63:(
+64:select
+65:*
+66:from
+67:jobs
+68:)
+69:as
+70:j
+71:WHERE
+72:j.job_id
+73:IN
+74:(
+75:SELECT
+76:jh.job_id
+77:FROM
+78:job_history
+79:jh
+80:,
+81:(
+82:select
+83:*
+84:from
+85:job_history_archive
+86:)
+87:jha
+88:WHERE
+89:jh.hist_id
+90:=
+91:jha.hist_id
+92:AND
+93:jh.department_id
+94:BETWEEN
+95:50
+96:AND
+97:100
+98:ORDER BY
+99:jh.job_id
+100:)
+101:AND
+102:j.job_id
+103:IN
+104:(
+105:SELECT
+106:global_job_type
+107:FROM
+108:params
+109:)
+110:GROUP BY
+111:j.job_id
+112:)
+113:ORDER BY
+114:d.dept_id
+115:LIMIT
+116:10
+117:;
 Open and close bracket pairs: 
-[[2, 6], [43, 45], [31, 46], [22, 47], [13, 48], [51, 63]]
+[[4, 6], [24, 28], [40, 44], [49, 51], [58, 60], [56, 61], [63, 68], [81, 86], [74, 100], [104, 109], [53, 112]]
 Subquery Open bracket positions: 
-[13, 22, 31, 51]
+[53, 63, 74, 81, 104]
 Subquery start and end positions: 
-[[31, 46], [22, 47], [13, 48], [51, 63]]
+[[63, 68, 'j'], [81, 86, 'jha'], [74, 100, ''], [104, 109, ''], [53, 112, '']]
+Between clause pairs: 
+[[23, 32], [35, 43], [94, 97]]
+Order by clause pairs: 
+[[98, 99], [113, 114]]
+Join clause pairs: 
