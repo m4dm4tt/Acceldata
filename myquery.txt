@@ -2,12 +2,20 @@ SELECT
   job_id, 
   AVG(salary) 
 FROM 
-  employees e FULL OUTER JOIN dept d 
+  employees e, 
+  (
+    select 
+      * 
+    from 
+      dept
+  ) d 
 WHERE 
   e.dept_id = d.dept_id 
   AND 1 = 1 
-  AND e.salary BETWEEN (10000 + 1) AND 100000 * 10 
-  AND e.bonus BETWEEN 100 + 2 AND (1000 * 15) 
+  AND e.salary BETWEEN (10000 + 1) 
+  AND 100000 * 10 
+  AND e.bonus BETWEEN 100 + 2 
+  AND (1000 * 15) 
 GROUP BY 
   job_id 
 HAVING 
@@ -35,8 +43,10 @@ HAVING
             from 
               job_history_archive
           ) jha 
-        WHERE jh.hist_id = jha.hist_id 
-          AND jh.department_id BETWEEN 50 AND 100 
+        WHERE 
+          jh.hist_id = jha.hist_id 
+          AND jh.department_id BETWEEN 50 
+          AND 100 
         ORDER BY 
           jh.job_id
       ) 

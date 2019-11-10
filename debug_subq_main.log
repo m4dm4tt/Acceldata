@@ -8,122 +8,128 @@
 7:FROM
 8:employees
 9:e
-10:FULL OUTER JOIN
-11:dept
-12:d
-13:WHERE
-14:e.dept_id
-15:=
-16:d.dept_id
-17:AND
-18:1
-19:=
-20:1
-21:AND
-22:e.salary
-23:BETWEEN
-24:(
-25:10000
-26:+
-27:1
-28:)
-29:AND
-30:100000
-31:*
-32:10
-33:AND
-34:e.bonus
-35:BETWEEN
-36:100
-37:+
-38:2
-39:AND
-40:(
-41:1000
-42:*
-43:15
-44:)
-45:GROUP BY
-46:job_id
-47:HAVING
-48:AVG
-49:(
-50:salary
-51:)
-52:<
-53:(
-54:SELECT
-55:MAX
-56:(
-57:AVG
+10:,
+11:(
+12:select
+13:*
+14:from
+15:dept
+16:)
+17:d
+18:WHERE
+19:e.dept_id
+20:=
+21:d.dept_id
+22:AND
+23:1
+24:=
+25:1
+26:AND
+27:e.salary
+28:BETWEEN
+29:(
+30:10000
+31:+
+32:1
+33:)
+34:AND
+35:100000
+36:*
+37:10
+38:AND
+39:e.bonus
+40:BETWEEN
+41:100
+42:+
+43:2
+44:AND
+45:(
+46:1000
+47:*
+48:15
+49:)
+50:GROUP BY
+51:job_id
+52:HAVING
+53:AVG
+54:(
+55:salary
+56:)
+57:<
 58:(
-59:j.min_salary
-60:)
-61:)
-62:FROM
+59:SELECT
+60:MAX
+61:(
+62:AVG
 63:(
-64:select
-65:*
-66:from
-67:jobs
-68:)
-69:as
-70:j
-71:WHERE
-72:j.job_id
-73:IN
-74:(
-75:SELECT
-76:jh.job_id
-77:FROM
-78:job_history
-79:jh
-80:,
-81:(
-82:select
-83:*
-84:from
-85:job_history_archive
-86:)
-87:jha
-88:WHERE
-89:jh.hist_id
-90:=
-91:jha.hist_id
-92:AND
-93:jh.department_id
-94:BETWEEN
-95:50
-96:AND
-97:100
-98:ORDER BY
-99:jh.job_id
-100:)
+64:j.min_salary
+65:)
+66:)
+67:FROM
+68:(
+69:select
+70:*
+71:from
+72:jobs
+73:)
+74:as
+75:j
+76:WHERE
+77:j.job_id
+78:IN
+79:(
+80:SELECT
+81:jh.job_id
+82:FROM
+83:job_history
+84:jh
+85:,
+86:(
+87:select
+88:*
+89:from
+90:job_history_archive
+91:)
+92:jha
+93:WHERE
+94:jh.hist_id
+95:=
+96:jha.hist_id
+97:AND
+98:jh.department_id
+99:BETWEEN
+100:50
 101:AND
-102:j.job_id
-103:IN
-104:(
-105:SELECT
-106:global_job_type
-107:FROM
-108:params
-109:)
-110:GROUP BY
-111:j.job_id
-112:)
-113:ORDER BY
-114:d.dept_id
-115:LIMIT
-116:10
-117:;
+102:100
+103:ORDER BY
+104:jh.job_id
+105:)
+106:AND
+107:j.job_id
+108:IN
+109:(
+110:SELECT
+111:global_job_type
+112:FROM
+113:params
+114:)
+115:GROUP BY
+116:j.job_id
+117:)
+118:ORDER BY
+119:d.dept_id
+120:LIMIT
+121:10
+122:;
 Open and close bracket pairs: 
-[[4, 6], [24, 28], [40, 44], [49, 51], [58, 60], [56, 61], [63, 68], [81, 86], [74, 100], [104, 109], [53, 112]]
+[[4, 6], [11, 16], [29, 33], [45, 49], [54, 56], [63, 65], [61, 66], [68, 73], [86, 91], [79, 105], [109, 114], [58, 117]]
 Subquery Open bracket positions: 
-[53, 63, 74, 81, 104]
+[11, 58, 68, 79, 86, 109]
 Subquery start and end positions: 
-[[63, 68, 'j'], [81, 86, 'jha'], [74, 100, ''], [104, 109, ''], [53, 112, '']]
-Between clause pairs: 
-[[23, 32], [35, 43], [94, 97]]
-Order by clause pairs: 
-[[98, 99], [113, 114]]
-Join clause pairs: 
+[[11, 16, 'd'], [68, 73, 'j'], [86, 91, 'jha'], [79, 105, ''], [109, 114, ''], [58, 117, '']]
+Between clause positions: 
+[[28, 37], [40, 48], [99, 102]]
+Order by clause positions: 
+[[103, 104], [118, 119]]
+Join clause positions: 
+[]
