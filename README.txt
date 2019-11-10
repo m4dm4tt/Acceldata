@@ -46,6 +46,11 @@ Setup
 5) myquery.txt is the input file for parsing. Please input only one valid SQL at a time into this file.
    Sample queries used for testing are available in query_database.sql
 6) Ensure myquery.txt, subq_main.py and subq_lib.py are available in the same directory.
+
+Logic
+-----
+
+The algorithm for the program is captured in 'Algorithm.txt'.
    
 Execution
 ---------
